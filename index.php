@@ -9,7 +9,7 @@
 <body>
     <?php
     $wordGroups = [];
-    $dictionary = fopen("Oxford English Dictionary.txt", "r") or die("Unable to open the file");
+    $dictionary = fopen("_Oxford English Dictionary.txt", "r") or die("Unable to open the file");
     while (!feof($dictionary)) {
         $word = fgets($dictionary);
         $firstletter = strtoupper($word[0]);
@@ -21,7 +21,7 @@
     fclose($dictionary);
 
     foreach ($wordGroups as $letter => $words) {
-        $filename = "Dictionary/" . $letter . ".txt";
+        $filename = $letter . ".txt";
         $file = fopen($filename, "w");
 
         foreach ($words as $word) {
@@ -41,7 +41,7 @@
         if (isset($_POST['txtword'])) {
             $firstWord = trim($_POST['txtword']);
             $eachWord = strtoupper($firstWord[0]);
-            $eachFilename = fopen("Dictionary/$eachWord.txt", "r");
+            $eachFilename = fopen("$eachWord.txt", "r");
             $wordFound = false;
             while(!feof($eachFilename)){
                 $eachLine = fgets($eachFilename);
